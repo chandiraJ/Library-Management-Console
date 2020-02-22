@@ -2,24 +2,28 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Creating the document structure for a book
-const BookSchema = new Schema({
+const IssueSchema = new Schema({
     bookid: {
         type: String,
         require: true,
     },
-    title: {
+    issued_date: {
         type: String,
         require: true
     },
-    author: {
+    return_date: {
         type: String,
         require: true
     },
-    status: {
+    issued_librarian: {
+        type: String,
+        require: true
+    },
+    member_name: {
         type: String,
         require: true
     }
 });
 
 // Creating a model and exporting
-module.exports = mongoose.model('Book', BookSchema);
+module.exports = mongoose.model('IssuedBook', IssueSchema);

@@ -9,8 +9,7 @@ const MemberSchema = new Schema({
     },
     name: {
         type: String,
-        require: true,
-        text: true
+        require: true
     },
     password: {
         type: String,

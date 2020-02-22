@@ -72,6 +72,22 @@ var Controller = function () {
 
     };
 
+// Retrieves a members when the member name is given
+    this.searchMember = function (data) {
+
+        return new Promise(function (resolve, reject) {
+
+            MemberSchema.find({name: {$regex: data.name, $options: "i"}}).then(function (data) {
+                resolve({status: 200, members: data});
+            }).catch(function (err) {
+                console.log(err);
+                reject({status: 404, message: err});
+            })
+
+        })
+
+    };
+
 };
 
 // Exporting a instance of the Controller class

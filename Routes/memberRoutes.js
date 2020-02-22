@@ -61,4 +61,15 @@ router.put('/updatemember', function (req, res) {
 
 });
 
+router.post('/searchmember', function (req, res) {
+
+    Controller.searchMember(req.body).then(function (data) {
+        res.status(data.status).send({data: data.members});
+    }).catch(function (err) {
+        console.log(err);
+        res.status(err.status).send({message: err.message});
+    })
+
+});
+
 module.exports = router;

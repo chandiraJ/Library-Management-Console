@@ -19,7 +19,7 @@ router.post('/', function (req, res) {
         res.status(err.status).send({message: err.message});
     });
 
-})
+});
 
 router.get('/getall', function (req, res) {
 
