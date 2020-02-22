@@ -20,4 +20,38 @@ router.post('/', function (req, res) {
     });
 
 })
+
+router.get('/getall', function (req, res) {
+
+    Controller.getAllBooks().then(function (data) {
+        res.status(data.status).send({data: data.books});
+    }).catch(function (err) {
+        console.log(err);
+        res.status(err.status).send({message: err.message});
+    })
+
+});
+
+router.delete('/removebook' +'/:id', function (req, res) {
+
+    Controller.removeBook(req.params.id).then(function (data) {
+        res.status(data.status).send({data: data.message});
+    }).catch(function (err) {
+        console.log(err);
+        res.status(err.status).send({message: err.message});
+    })
+
+});
+
+router.put('/updatebook', function (req, res) {
+
+    Controller.updateBook(req.body).then(function (data) {
+        res.status(data.status).send({data: data.message});
+    }).catch(function (err) {
+        console.log(err);
+        res.status(err.status).send({message: err.message});
+    })
+
+});
+
 module.exports = router;
