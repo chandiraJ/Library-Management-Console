@@ -1,7 +1,7 @@
 // Getting the exported Book model
 const BookSchema = require('../Models/book');
 
-// Creates a Controller class for books and define each operation on books in it as functions
+// Creating a Controller class for books and define each operation on books in it as functions
 var Controller = function () {
 
     this.insertBook = function (data, newid) {
@@ -51,7 +51,7 @@ var Controller = function () {
         })
     };
 
-// Retrive all the exixting books
+// Retrieves all the exiting books
     this.getAllBooks = function (data) {
 
         return new Promise(function (resolve, reject) {
@@ -68,7 +68,7 @@ var Controller = function () {
 
 //Remove a book by its BookID
     this.removeBook = function (id) {
-        console.log(id)
+
         return new Promise(function (resolve, reject) {
             BookSchema.findOneAndDelete({bookid: id}).then(function (data) {
                 resolve({status: 200, message: "Book removed " + data});
@@ -94,6 +94,36 @@ var Controller = function () {
                 console.log(err);
                 reject({status: 404, message: err});
             });
+
+        })
+
+    };
+
+// Search a book when the title, bookid or the both are given
+    this.searchBooks = function (data) {
+
+        return new Promise(function (resolve, reject) {
+            let query;
+            let title = data.title;
+            let author = data.author;
+            let bookid = data.bookid;
+
+            if (bookid !== undefined) {
+                query = {bookid: bookid};
+            } else if (title !== undefined && author !== undefined) {
+                query = {title: {$regex: title, $options: "i"}, author: {$regex: author, $options: "i"}};
+            } else if (title !== undefined) {
+                query = {title: {$regex: title, $options: "i"}};
+            } else {
+                query = {author: {$regex: author, $options: "i"}};
+            }
+
+            BookSchema.find(query).then(function (data) {
+                resolve({status: 200, books: data});
+            }).catch(function (err) {
+                console.log(err);
+                reject({status: 404, message: err});
+            })
 
         })
 

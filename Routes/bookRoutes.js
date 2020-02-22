@@ -32,6 +32,17 @@ router.get('/getall', function (req, res) {
 
 });
 
+router.post('/searchbook', function (req, res) {
+
+    Controller.searchBooks(req.body).then(function (data) {
+        res.status(data.status).send({data: data.books});
+    }).catch(function (err) {
+        console.log(err);
+        res.status(err.status).send({message: err.message});
+    })
+
+});
+
 router.delete('/removebook' +'/:id', function (req, res) {
 
     Controller.removeBook(req.params.id).then(function (data) {
