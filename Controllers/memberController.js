@@ -11,7 +11,8 @@ var Controller = function () {
             var member = new MemberSchema({
                 username: data.username,
                 name: data.name,
-                password: data.password
+                password: data.password,
+                membertype: 'user'
             });
 
             //save book details. save function in schema model

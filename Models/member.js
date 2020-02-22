@@ -14,6 +14,10 @@ const MemberSchema = new Schema({
     password: {
         type: String,
         require: true
+    },
+    membertype: {
+        type: String,
+        require: true
     }
 });
 
