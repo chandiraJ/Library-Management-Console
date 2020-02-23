@@ -108,11 +108,11 @@ var Controller = function () {
             let author = data.author;
             let bookid = data.bookid;
 
-            if (bookid !== undefined) {
+            if (bookid !== "") {
                 query = {bookid: bookid};
-            } else if (title !== undefined && author !== undefined) {
+            } else if (title !== "" && author !== "") {
                 query = {title: {$regex: title, $options: "i"}, author: {$regex: author, $options: "i"}};
-            } else if (title !== undefined) {
+            } else if (title !== "") {
                 query = {title: {$regex: title, $options: "i"}};
             } else {
                 query = {author: {$regex: author, $options: "i"}};
