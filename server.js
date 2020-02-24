@@ -33,7 +33,7 @@ app.listen(8080, 'localhost', function (err) {
 /**
  * Creates the connection to the Mongo database
  */
-mongoose.connect('mongodb://libuser:libadmin123@ds029831.mlab.com:29831/librarydb', function (err) {
+mongoose.connect('mongodb://xxxx:xxxxx@ds029831.mlab.com:29831/librarydb', function (err) {
     if (err) {
         console.log(err);
         process.exit(-1);
