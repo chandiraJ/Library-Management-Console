@@ -1,12 +1,19 @@
-// Getting the exported Member model
+/**
+ * Getting the exported Member model
+ */
 const MemberSchema = require('../Models/member');
 
-// Creating a Controller class for books and define each operation on books in it as functions
+/**
+ * Creating a Controller class for books and define each operation on books in it as functions
+ * @constructor
+ */
 var Controller = function () {
 
     this.insertMember = function (data) {
 
-        // Promises are employed to obtain the asynchronous behavoir and set the values to book instance
+        /**
+         * Promises are employed to obtain the asynchronous behavoir and set the values to book instance
+         */
         return new Promise(function (resolve, reject) {
             var member = new MemberSchema({
                 username: data.username,
@@ -15,7 +22,9 @@ var Controller = function () {
                 membertype: 'user'
             });
 
-            //save book details. save function in schema model
+            /**
+             * save book details. save function in schema model
+             */
             member.save().then(function () {
                 resolve({status: 200, message: "Member added successfully!"});
             }).catch(function (err) {
@@ -24,7 +33,11 @@ var Controller = function () {
             })
         })
     };
-// Retrieves all the exiting members
+    /**
+     * Retrieves all the exiting members
+     * @param data
+     * @returns {Promise<unknown>}
+     */
     this.getAllMembers = function (data) {
 
         return new Promise(function (resolve, reject) {
@@ -39,7 +52,11 @@ var Controller = function () {
 
     };
 
-//Remove a member by username
+    /**
+     * Remove a member by username
+     * @param username
+     * @returns {Promise<unknown>}
+     */
     this.removeMember = function (username) {
 
         return new Promise(function (resolve, reject) {
@@ -91,5 +108,8 @@ var Controller = function () {
 
 };
 
-// Exporting a instance of the Controller class
+/**
+ * Exporting a instance of the Controller class
+ * @type {Controller}
+ */
 module.exports = new Controller();

@@ -3,9 +3,10 @@ var Controller = require("../Controllers/bookController");
 
 var router = Express.Router();
 
-// API endpoint to accept Requests
-// Ex:- API endpoint to get accept post requests to /library/book/
-
+/**
+ * API endpoint to accept Requests
+ * Ex:- API endpoint to get accept post requests to /library/book/
+ */
 router.post('/', function (req, res) {
 
     Controller.getNewId().then(function (newid) {

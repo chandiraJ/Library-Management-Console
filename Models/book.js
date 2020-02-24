@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Creating the document structure for a book
+/**
+ * Creating the document structure for a book
+ */
 const BookSchema = new Schema({
     bookid: {
         type: String,

@@ -3,9 +3,10 @@ var Controller = require("../Controllers/memberController");
 
 var router = Express.Router();
 
-// API endpoint to accept Requests
-// Ex:- API endpoint to get accept post requests to /library/member/
-
+/**
+ *  API endpoint to accept Requests
+ * Ex:- API endpoint to get accept post requests to /library/member/
+ */
 router.post('/', function (req, res) {
 
     Controller.insertMember(req.body).then(function (data) {
@@ -27,18 +28,7 @@ router.get('/getall', function (req, res) {
     })
 
 });
-//
-// router.post('/searchbook', function (req, res) {
-//
-//     Controller.searchBooks(req.body).then(function (data) {
-//         res.status(data.status).send({data: data.books});
-//     }).catch(function (err) {
-//         console.log(err);
-//         res.status(err.status).send({message: err.message});
-//     })
-//
-// });
-//
+
 router.delete('/removemember' +'/:username', function (req, res) {
 
     Controller.removeMember(req.params.username).then(function (data) {

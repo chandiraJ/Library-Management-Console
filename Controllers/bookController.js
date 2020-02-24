@@ -1,12 +1,19 @@
-// Getting the exported Book model
+/**
+ * Getting the exported Book model
+ */
 const BookSchema = require('../Models/book');
 
-// Creating a Controller class for books and define each operation on books in it as functions
+/**
+ * Creating a Controller class for books and define each operation on books in it as functions
+ * @constructor
+ */
 var Controller = function () {
 
     this.insertBook = function (data, newid) {
 
-        // Promises are employed to obtain the asynchronous behavoir and set the values to book instance
+        /**
+         * Promises are employed to obtain the asynchronous behavoir and set the values to book instance
+         */
         return new Promise(function (resolve, reject) {
             var book = new BookSchema({
                 bookid: newid,
@@ -14,7 +21,9 @@ var Controller = function () {
                 author: data.author,
                 status: 'Available'
             });
-            //save book details. save function in schema model
+            /**
+             * save book details. save function in schema model
+             */
             book.save().then(function () {
                 resolve({status: 200, message: "Book added successfully!"});
             }).catch(function (err) {
@@ -24,7 +33,10 @@ var Controller = function () {
         })
     };
 
-// Generates a new id for a new book
+    /**
+     * Generates a new id for a new book
+     * @returns {Promise<unknown>}
+     */
     this.getNewId = function () {
 
         return new Promise(function (resolve, reject) {
@@ -51,7 +63,11 @@ var Controller = function () {
         })
     };
 
-// Retrieves all the exiting books
+    /**
+     * Retrieves all the exiting books
+     * @param data
+     * @returns {Promise<unknown>}
+     */
     this.getAllBooks = function (data) {
 
         return new Promise(function (resolve, reject) {
@@ -66,7 +82,11 @@ var Controller = function () {
 
     };
 
-//Remove a book by its BookID
+    /**
+     * Remove a book by its BookID
+     * @param id
+     * @returns {Promise<unknown>}
+     */
     this.removeBook = function (id) {
 
         return new Promise(function (resolve, reject) {
@@ -80,7 +100,11 @@ var Controller = function () {
         })
 
     };
-// Update details of a book
+    /**
+     * Update details of a book
+     * @param data
+     * @returns {Promise<unknown>}
+     */
     this.updateBook = function (data) {
         return new Promise(function (resolve, reject) {
             BookSchema.findOneAndUpdate({bookid: data.bookid}, {
@@ -99,7 +123,11 @@ var Controller = function () {
 
     };
 
-// Search a book when the title, bookid or the both are given
+    /**
+     * Search a book when the title, bookid or the both are given
+     * @param data
+     * @returns {Promise<unknown>}
+     */
     this.searchBooks = function (data) {
 
         return new Promise(function (resolve, reject) {
@@ -131,5 +159,8 @@ var Controller = function () {
 
 };
 
-// Exporting a instance of the Controller class
+/**
+ * Exporting a instance of the Controller class
+ * @type {Controller}
+ */
 module.exports = new Controller();

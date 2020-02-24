@@ -1,8 +1,15 @@
-// Getting the exported Member model
+/**
+ * Getting the exported Member model
+ * @type {Model}
+ */
 const MemberSchema = require('../Models/member');
 
 var Controller = function () {
-    // Look for a existing member and return details
+    /**
+     * Look for a existing member and return details
+     * @param data
+     * @returns {Promise<unknown>}
+     */
     this.login = function (data) {
 
         return new Promise(function (resolve, reject) {
@@ -19,5 +26,8 @@ var Controller = function () {
     };
 };
 
-// Exporting a instance of the Controller class
+/**
+ * Exporting a instance of the Controller class
+ * @type {Controller}
+ */
 module.exports = new Controller();

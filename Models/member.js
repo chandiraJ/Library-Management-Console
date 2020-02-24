@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Creating the document structure for a member
+/**
+ * Creating the document structure for a member
+ */
 const MemberSchema = new Schema({
     username: {
         type: String,
@@ -21,5 +23,8 @@ const MemberSchema = new Schema({
     }
 });
 
-// Creating a model and exporting
+/**
+ * Creating a model and exporting
+ * @type {Model}
+ */
 module.exports = mongoose.model('Member', MemberSchema);
