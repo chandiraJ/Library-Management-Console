@@ -51,6 +51,18 @@ var Controller = function () {
         })
 
     };
+
+    this.specifictoUser = function (name) {
+        return new Promise(function (resolve, reject) {
+            IssueBookSchema.find({member_name: name}).then(function (data) {
+                resolve({status: 200, books: data});
+            }).catch(function (err) {
+                console.log(err);
+                reject({status: 404, message: err});
+            })
+
+        })
+    }
 }
 
 /**

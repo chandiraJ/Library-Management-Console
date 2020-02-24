@@ -29,4 +29,15 @@ router.get('/', function (req, res) {
 
 });
 
+router.get('/specific' + '/:name', function (req, res) {
+
+    Controller.specifictoUser(req.params.name).then(function (data) {
+        res.status(data.status).send({data: data.books});
+    }).catch(function (err) {
+        console.log("------------------------------" + err.message)
+        res.status(err.status).send({message: err.message});
+    })
+
+});
+
 module.exports = router;

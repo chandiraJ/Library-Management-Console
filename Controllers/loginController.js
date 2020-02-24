@@ -15,7 +15,8 @@ var Controller = function () {
         return new Promise(function (resolve, reject) {
 
             MemberSchema.find({username: data.username, password: data.password}).then(function (data) {
-                resolve({status: 200, member: data});
+                console.log(data)
+                resolve({status: 200, member: data[0]});
             }).catch(function (err) {
                 console.log(err);
                 reject({status: 404, message: err});
