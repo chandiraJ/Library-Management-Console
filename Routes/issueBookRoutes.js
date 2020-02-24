@@ -18,4 +18,15 @@ router.post('/', function (req, res) {
 
 });
 
+router.get('/', function (req, res) {
+
+    Controller.getAll().then(function (data) {
+        res.status(data.status).send({data: data.books});
+    }).catch(function (err) {
+        console.log("------------------------------" + err.message)
+        res.status(err.status).send({message: err.message});
+    })
+
+});
+
 module.exports = router;

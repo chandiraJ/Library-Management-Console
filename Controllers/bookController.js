@@ -65,10 +65,9 @@ var Controller = function () {
 
     /**
      * Retrieves all the exiting books
-     * @param data
      * @returns {Promise<unknown>}
      */
-    this.getAllBooks = function (data) {
+    this.getAllBooks = function () {
 
         return new Promise(function (resolve, reject) {
             BookSchema.find().then(function (data) {

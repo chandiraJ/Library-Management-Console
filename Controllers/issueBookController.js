@@ -33,6 +33,24 @@ var Controller = function () {
             })
         })
     };
+
+    /**
+     * Retrieves all the issued book details
+     * @returns {Promise<unknown>}
+     */
+    this.getAll = function () {
+
+        return new Promise(function (resolve, reject) {
+            IssueBookSchema.find().then(function (data) {
+                resolve({status: 200, books: data});
+            }).catch(function (err) {
+                console.log(err);
+                reject({status: 404, message: err});
+            })
+
+        })
+
+    };
 }
 
 /**

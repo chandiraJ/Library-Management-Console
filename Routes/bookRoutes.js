@@ -25,6 +25,7 @@ router.post('/', function (req, res) {
 router.get('/getall', function (req, res) {
 
     Controller.getAllBooks().then(function (data) {
+        console.log(data)
         res.status(data.status).send({data: data.books});
     }).catch(function (err) {
         console.log(err);
